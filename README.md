@@ -7,7 +7,7 @@ a simple glossary for japanese words, which supports add words and list/ search 
 Run command
 
 ```bash
-word-book add こんにちは konnichiha Hello
+word-book add こんにちは konnichiha "Good morning"
 ```
 
 and you will see
