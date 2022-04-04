@@ -1,5 +1,5 @@
-mod word_bank;
 mod func;
+mod word_bank;
 
 extern crate csv;
 use clap::{Parser, Subcommand};
@@ -42,7 +42,6 @@ fn main() {
     let config_path = format!("{}/.wordbook", var("HOME").unwrap()).to_string();
     let config_path = std::path::Path::new(&config_path);
 
-
     if !config_path.exists() {
         println!("It seems that you're trying word_book for the first time.");
         println!("Let's config the path which word_book stores words in! Don't forget the slash at the end of the path.");
@@ -55,7 +54,9 @@ fn main() {
             .expect("Cannot read your input");
 
         let mut config_file = File::create(config_path).expect("Cannot create config file");
-        config_file.write(dir.as_bytes()).expect("Cannot write config file");
+        config_file
+            .write(dir.as_bytes())
+            .expect("Cannot write config file");
     }
 
     let mut dict_dir = String::new();
@@ -65,6 +66,8 @@ fn main() {
         .expect("Cannot read config file");
     dict_dir = shellexpand::env(&dict_dir)
         .expect("Cannot parse the path")
+        .to_string()
+        .trim()
         .to_string();
 
     let args = Args::parse();
@@ -76,9 +79,9 @@ fn main() {
             meaning,
         } => {
             println!("Add a new word:");
-            println!("word: {}",word);
-            println!("romanji: {}",romanji);
-            println!("meaning: {}",meaning);
+            println!("word: {}", word);
+            println!("romanji: {}", romanji);
+            println!("meaning: {}", meaning);
 
             add(&dict_dir, &word, &romanji, &meaning);
         }

@@ -21,7 +21,7 @@ impl WordBank {
 
     /// read a file and append to the word bank
     pub fn read_from(&mut self,file_path: &std::path::Path) -> Result<(),Box<dyn Error>> {
-        let mut rdr = csv::ReaderBuilder::new().has_headers(false).from_path(file_path).expect("Cannot read dict file");
+        let mut rdr = csv::ReaderBuilder::new().has_headers(false).from_path(file_path)?;
         let mut line_number = 0;
         
         for result in rdr.records() {

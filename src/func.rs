@@ -42,13 +42,13 @@ pub fn list(dict_dir: &str, range: i32) {
         false => {
             let r = -range;
             for _ in 0..=r {
+                let path = format!("{}{}",dict,date.format("%Y-%m-%d").to_string());
+                let path = std::path::Path::new(&path);
+
                 date = match date.checked_sub_signed(chrono::Duration::days(1)) {
                     Some(d) => d,
                     None => { break; },
                 };
-
-                let path = format!("{}{}",dict,date.format("%Y-%m-%d").to_string());
-                let path = std::path::Path::new(&path);
 
                 match wb.read_from(path) {
                     Ok(_) => {},
