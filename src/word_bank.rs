@@ -48,9 +48,9 @@ impl WordBank {
 
     /// list all words in stdin
     pub fn list(&self) {
-        println!("WORD\tROMANJI\tMEAN");
+        println!("WORD,ROMANJI,MEAN");
         for w in &self.words {
-            println!("{}\t{}\t{}",w.word,w.romanji,w.meaning);
+            println!("{},{},{}",w.word,w.romanji,w.meaning);
         }
     }
 
