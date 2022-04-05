@@ -3,7 +3,8 @@ use std::io::prelude::*;
 
 pub fn add(dict_dir: &str, name: &str, romanji: &str, meaning: &str) {
     let mut dict = dict_dir.to_string();
-    let date = chrono::Utc::now().format("%Y-%m-%d");
+    // let date = chrono::Utc::now().format("%Y-%m-%d");
+    let date = chrono::Local::now().format("%Y-%m-%d");
     dict = dict + &date.to_string();
     let dict = std::path::Path::new(&dict);
 
@@ -21,7 +22,8 @@ pub fn add(dict_dir: &str, name: &str, romanji: &str, meaning: &str) {
 
 pub fn list(dict_dir: &str, range: i32) {
     let mut dict = dict_dir.to_string();
-    let mut date = chrono::Utc::now();
+    // let mut date = chrono::Utc::now();
+    let mut date = chrono::Local::now();
     let mut wb = crate::word_bank::WordBank::new();
 
     match range >= 0 {
